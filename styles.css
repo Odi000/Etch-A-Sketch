@@ -14,32 +14,3 @@ body {
     height: 100vh;
     background-color: rgb(30, 30, 30);
 }
-
-.container {
-    position: relative;
-    display: grid;
-    /* grid-template-columns: repeat(16, 1fr); */
-    /* grid-template-rows: repeat(16, 1fr); */
-    height: 640px;
-    width: 640px;
-    background-color: rgb(225, 225, 225);
-    box-shadow: 0 0 6px 2px grey;
-}
-
-button {
-    position: absolute;
-    top: 24px;
-    left: 650px;
-}
-
-.grey {
-    background-color: var(--grey);
-}
-
-.grayer {
-    background-color:var(--grayer);
-}
-
-.even-grayer {
-    background-color: var(--even-grayer);
-}
