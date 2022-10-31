@@ -1,5 +1,5 @@
-const section = document.querySelector('section');
-const container = document.querySelector('.container');
+const etchDaSketch = document.getElementById('etch-da-sketch');
+const screen = document.getElementById('screen');
 const quality = document.querySelector('button');
 
 createAppendDivs();

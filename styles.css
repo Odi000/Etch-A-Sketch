@@ -9,53 +9,81 @@
 
 :root{
     --primary-clr: #C00100;
+    --primary-clr2: #9D0100;
     --secondary-clr: #f6d692;
     font-size: 10px;
 }
 
+@media (max-width: 600px){
+    :root{
+        font-size: 7px;
+    }
+}
+
 body {
-    margin: 2rem;
     width: 100vw;
     height: 100vh;
     background-color: rgb(60, 60, 60);
+    display: flex;
+    align-items: center;
 }
 
 button{
     font-family: VT323, monospace;
     font-size: 2.2rem;
     background-color: grey;
-    border-top: 4px solid rgba(255, 255, 255, 0.3);
-    border-right: 4px solid rgba(255, 255, 255, 0.5);
-    border-bottom: 4px solid rgba(0, 0, 0, 0.4);
-    border-left: 4px solid rgba(0, 0, 0, 0.5);
-    /* box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3); */
+    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+    border-top: 0.4rem solid rgba(255, 255, 255, 0.3);
+    border-right: 0.4rem solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.4rem solid rgba(0, 0, 0, 0.4);
+    border-left: 0.4rem solid rgba(0, 0, 0, 0.5);
+    box-shadow: -0.2rem 0.2rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+    transition: border 50ms, box-shadow 50ms, padding 50ms;
 }
 
-.etch-da-sketch{
+button:active{
+    padding: 0.4rem 0.8rem 0px 0.4rem;
+    border-top: 0.4rem solid rgba(0, 0, 0, 0.4);
+    border-right: 0.4rem solid rgba(0, 0, 0, 0.5);
+    border-bottom: 0.4rem solid rgba(255, 255, 255, 0.3);
+    border-left: 0.4rem solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+    -0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3),
+    inset -0.2rem 0.2rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+#etch-da-sketch{
     width: 54rem;
-    height: 61.1rem;
+    height: 62.5rem;
+    margin: 0 auto;
     background-color: var(--primary-clr);
-    padding-top: 0.1px;
+    /* padding-top: 0.01rem; Uncomment in case you don't want the body Display to be flex*/
+    border-radius: 0.1rem;
     box-shadow:
-    0 0 0 2px var(--secondary-clr),
-    0 0 0 6px var(--primary-clr);
+    0 0 0 0.2rem var(--secondary-clr),
+    0 0 0 0.6rem var(--primary-clr2);
 }
 
-.screen{
+#screen{
     width: 50rem;
     height: 50rem;
     background-color: rgba(255,255,255,0.8);
     margin: 2rem auto 0;
+    border-radius: 0.1rem;
     box-shadow: 
-    0 0 0 4px var(--primary-clr),
-    0 0 0 6px var(--secondary-clr);
+    0 0 0 0.4rem var(--primary-clr2),
+    0 0 0 0.6rem var(--secondary-clr);
 }
 
 .btn-cntr{
     width: 41rem;
-    margin: 1.3rem auto 0;
+    margin: 1.6rem auto 0;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+}
+
+.btn-cntr>:first-child{
+    position: relative;
 }
 
 .btn-row{
@@ -69,4 +97,23 @@ button{
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: auto;
+}
+
+input[type='color']{
+    height: 3.5rem;
+    width: 3.5rem;
+    position: absolute;
+    left: -4.5rem;
+    background-color: var(--primary-clr);
+    border: 2px solid var(--secondary-clr);
+    padding: 3px;
+}
+
+#clr-picker::-webkit-color-swatch-wrapper{
+    border: 2px solid var(--secondary-clr);
+    padding: 0;
+}
+
+#clr-picker::-webkit-color-swatch{
+    border: none;
 }
