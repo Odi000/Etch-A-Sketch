@@ -29,6 +29,7 @@ body {
 }
 
 button{
+    cursor: pointer;
     font-family: VT323, monospace;
     font-size: 2.2rem;
     background-color: grey;
@@ -54,7 +55,7 @@ button:active{
 
 #etch-da-sketch{
     width: 54rem;
-    height: 62.5rem;
+    /* height: 62.5rem; */
     margin: 0 auto;
     background-color: var(--primary-clr);
     /* padding-top: 0.01rem; Uncomment in case you don't want the body Display to be flex*/
@@ -77,11 +78,14 @@ button:active{
     0 0 0 0.6rem var(--secondary-clr);
 }
 
-#screen>div{transition: background-color 120ms;}
+#screen>div{
+    transition: background-color 120ms;
+    user-select: none;
+}
 
 .btn-cntr{
     width: 41rem;
-    margin: 1.6rem auto 0;
+    margin: 1.6rem auto 1.2rem;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
 }
@@ -104,6 +108,7 @@ button:active{
 }
 
 input[type='color']{
+    cursor: pointer;
     height: 3.5rem;
     width: 3.5rem;
     position: absolute;

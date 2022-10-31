@@ -15,18 +15,17 @@ const btnFunctions = {
             bgColor = e.target.style.backgroundColor = 'rgb(255,255,255)'
         }
         
-        const rgbValues = bgColor.match(regExp);
+        const rgb = bgColor.match(regExp);
+        const newrgb = rgb.map(value => value-shade);
         
         e.target.style.backgroundColor = (
-            `rgb(${rgbValues[0]-shade},${rgbValues[1]-shade},${rgbValues[2]-shade})`
-            );
-        },
-        eraser: (e) => {
-            e.target.style.backgroundColor = '';
-        },
-        reset: (e) => {
-            createAppendDivs();
+            `rgb(${newrgb[0]},${newrgb[1]},${newrgb[2]})`
+        );
     },
+    eraser: (e) => {
+        e.target.style.backgroundColor = '';
+    },
+    reset: (e) => {createAppendDivs()},
     warm: (e) => {
         const red = getColorValue(128,255);
         const green = getColorValue(0,255);
@@ -53,7 +52,9 @@ function createAppendDivs(side = 16) {
     for(let i=0; i<side*side; i++){
         const newDiv = document.createElement('div');
         newDiv.style.opacity = 0.9;
-        newDiv.addEventListener('mouseover', checkPressedButton)
+        newDiv.onmousedown = checkPressedButton;
+        newDiv.onmouseover = checkPressedButton;
+        // newDiv.addEventListener('mouseup', stopDraw);
         screen.appendChild(newDiv);
     }
 }
@@ -74,39 +75,13 @@ function parseButton(){
 function checkPressedButton(e){
     buttons.forEach(button => {
         if(button.classList.contains('pressed')){
-            btnFunctions[button.id](e);
             screen.classList.add('hover');
+            if(e.buttons !== 1) return;
+            btnFunctions[button.id](e);
         }
     });
 }
 
 function getColorValue(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
-}
-
-
-
-
-function changeg() {
-    let baseRGB = 200;
-    const regEx = /[\d]+/;
-    let bgColor = this.style.backgroundColor;
-    console.log(bgColor);
-    if(!(regEx.test(bgColor))){
-        return this.style.backgroundColor = `rgb(${baseRGB},${baseRGB},${baseRGB})`;
-    }
-    baseRGB = parseInt(bgColor.match(regEx)[0]);
-    this.style.backgroundColor = `rgb(${baseRGB-25},${baseRGB-25},${baseRGB-25})`;
-}
-
-function resize() {
-    const input = prompt('Adjust the resolution of the drawing board by putting the number of squares you want per side','');
-    
-    if(!input) return alert('put something muthafucka!');
-    
-    const size = parseInt(input);
-
-    if(isNaN(size)||size<16||size>100)return alert('O raku do marresh men ti!');
-
-    createAppendDivs(size);
 }
