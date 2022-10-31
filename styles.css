@@ -77,6 +77,8 @@ button:active{
     0 0 0 0.6rem var(--secondary-clr);
 }
 
+#screen>div{transition: background-color 120ms;}
+
 .btn-cntr{
     width: 41rem;
     margin: 1.6rem auto 0;
@@ -131,10 +133,10 @@ input[type='color']{
     inset -0.2rem 0.2rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3); 
 }
 
-.cursorio{
-    cursor: url(./Cursors/pencil.cur), crosshair;
+.hover{
+    cursor: url(./Cursors/SquareNormal.cur), crosshair;
 }
 
-.cursorio>*{
+.hover>*{
     cursor: inherit;
 }
