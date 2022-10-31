@@ -1,16 +1,72 @@
-:root{
-    --grey: rgba(0, 0, 0, 0.1);
-    --grayer: rgba(0, 0, 0, 0.25);
-    --even-grayer: rgba(0, 0, 0, 0.5); 
-}
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
 }
 
+:root{
+    --primary-clr: #C00100;
+    --secondary-clr: #f6d692;
+    font-size: 10px;
+}
+
 body {
+    margin: 2rem;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(30, 30, 30);
+    background-color: rgb(60, 60, 60);
+}
+
+button{
+    font-family: VT323, monospace;
+    font-size: 2.2rem;
+    background-color: grey;
+    border-top: 4px solid rgba(255, 255, 255, 0.3);
+    border-right: 4px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 4px solid rgba(0, 0, 0, 0.4);
+    border-left: 4px solid rgba(0, 0, 0, 0.5);
+    /* box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3); */
+}
+
+.etch-da-sketch{
+    width: 54rem;
+    height: 61.1rem;
+    background-color: var(--primary-clr);
+    padding-top: 0.1px;
+    box-shadow:
+    0 0 0 2px var(--secondary-clr),
+    0 0 0 6px var(--primary-clr);
+}
+
+.screen{
+    width: 50rem;
+    height: 50rem;
+    background-color: rgba(255,255,255,0.8);
+    margin: 2rem auto 0;
+    box-shadow: 
+    0 0 0 4px var(--primary-clr),
+    0 0 0 6px var(--secondary-clr);
+}
+
+.btn-cntr{
+    width: 41rem;
+    margin: 1.3rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.btn-row{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.btn-clmn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: auto;
 }
