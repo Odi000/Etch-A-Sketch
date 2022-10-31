@@ -67,7 +67,9 @@ button:active{
 #screen{
     width: 50rem;
     height: 50rem;
-    background-color: rgba(255,255,255,0.8);
+    display: grid;
+    background-color: rgba(255,255,255);
+    opacity: 0.9;
     margin: 2rem auto 0;
     border-radius: 0.1rem;
     box-shadow: 
@@ -116,4 +118,23 @@ input[type='color']{
 
 #clr-picker::-webkit-color-swatch{
     border: none;
+}
+
+.pressed{
+    padding: 0.4rem 0.8rem 0px 0.4rem;
+    border-top: 0.4rem solid rgba(0, 0, 0, 0.4);
+    border-right: 0.4rem solid rgba(0, 0, 0, 0.5);
+    border-bottom: 0.4rem solid rgba(255, 255, 255, 0.3);
+    border-left: 0.4rem solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+    -0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3),
+    inset -0.2rem 0.2rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3); 
+}
+
+.cursorio{
+    cursor: url(./Cursors/pencil.cur), crosshair;
+}
+
+.cursorio>*{
+    cursor: inherit;
 }

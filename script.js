@@ -1,22 +1,82 @@
 const etchDaSketch = document.getElementById('etch-da-sketch');
 const screen = document.getElementById('screen');
-const quality = document.querySelector('button');
+const buttons = document.querySelectorAll('button');
+const pickedColor = () => document.getElementById('clr-picker').value;
+const btnFunctions = {
+    color: (e) => {
+        e.target.style.backgroundColor = pickedColor();
+        screen.classList.add('cursorio')
+    },
+    shader: (e) => {
+        const regExp = /[\d]+/g;
+        let bgColor = e.target.style.backgroundColor;
+        let shade = 25;
 
-createAppendDivs();
+        if(bgColor === '') {
+            bgColor = e.target.style.backgroundColor = 'rgb(255,255,255)'
+        }
 
-quality.onclick = resize;
+        const rgbValues = bgColor.match(regExp);
 
-function createAppendDivs(size = 16) {
-    container.innerHTML = '';
-    container.style.cssText = `grid-template-columns: repeat(${size},1fr)`;
-    for(let i=0; i<size*size; i++){
-        const newDiv = document.createElement('div');
-        newDiv.addEventListener('mouseover', changeBgColor);
-        container.appendChild(newDiv);
+        e.target.style.backgroundColor = (
+            `rgb(${rgbValues[0]-shade},${rgbValues[1]-shade},${rgbValues[2]-shade})`
+            );
+    },
+    eraser: (e) => {
+        e.target.style.backgroundColor = '';
+    },
+    reset: (e) => {
+        createAppendDivs();
+    },
+    warm: (e) => {
+        
+    },
+    cold: (e) => {
+        
     }
 }
 
-function changeBgColor() {
+createAppendDivs();
+
+buttons.forEach(button => button.onclick = parseButton);
+
+function createAppendDivs(side = 16) {
+    screen.innerHTML = '';
+    screen.style.cssText = `grid-template-columns: repeat(${side},1fr)`;
+    for(let i=0; i<side*side; i++){
+        const newDiv = document.createElement('div');
+        newDiv.style.opacity = 0.9;
+        newDiv.addEventListener('mouseover', checkPressedButton)
+        screen.appendChild(newDiv);
+    }
+}
+
+function parseButton(e){
+    if(this.id === 'reset') return btnFunctions[this.id]();
+    if(this.classList.contains('pressed')){
+       return this.classList.remove('pressed'); 
+    } 
+    buttons.forEach(button => button.classList.remove('pressed'));
+    this.classList.add('pressed');
+}
+
+function checkPressedButton(e){
+    buttons.forEach(button => {
+        if(button.classList.contains('pressed')) btnFunctions[button.id](e);
+    });
+}
+
+// function drawColor(){}
+// function drawShade(){}
+// function erase(){}
+// function resetAll(){}
+// function drawWarm(){}
+// function drawCold(){}
+
+
+
+
+function changeg() {
     let baseRGB = 200;
     const regEx = /[\d]+/;
     let bgColor = this.style.backgroundColor;
