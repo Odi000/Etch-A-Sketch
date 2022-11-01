@@ -1,6 +1,8 @@
 const etchDaSketch = document.getElementById('etch-da-sketch');
 const screen = document.getElementById('screen');
 const buttons = document.querySelectorAll('button');
+const bulbDivs = document.querySelectorAll('.bulbs');
+const bulbs = [];
 const pickedColor = () => document.getElementById('clr-picker').value;
 const btnFunctions = {
     color: (e) => {
@@ -42,19 +44,23 @@ const btnFunctions = {
     }
 }
 
-createAppendDivs();
-
 buttons.forEach(button => button.onclick = parseButton);
+bulbDivs.forEach(div => {
+    bulbs.push(div.firstElementChild);
+    div.onclick = parseBulb;
+});
+createAppendDivs();
 
 function createAppendDivs(side = 16) {
     screen.innerHTML = '';
     screen.style.cssText = `grid-template-columns: repeat(${side},1fr)`;
+    switchBulbOn(side);
+
     for(let i=0; i<side*side; i++){
         const newDiv = document.createElement('div');
         newDiv.style.opacity = 0.9;
         newDiv.onmousedown = checkPressedButton;
         newDiv.onmouseover = checkPressedButton;
-        // newDiv.addEventListener('mouseup', stopDraw);
         screen.appendChild(newDiv);
     }
 }
@@ -72,6 +78,15 @@ function parseButton(){
     this.classList.add('pressed');
 }
 
+function parseBulb(){
+    const chosenSize = Number(this.attributes.name.value);
+    const turnedOnBulb = bulbs.find(bulb => bulb.classList.contains('on'));
+    const turnedOnBulbNr = turnedOnBulb.id.match(/\d+/)[0];
+
+    if(chosenSize == turnedOnBulbNr) return;
+    createAppendDivs(chosenSize);
+}
+
 function checkPressedButton(e){
     buttons.forEach(button => {
         if(button.classList.contains('pressed')){
@@ -84,4 +99,24 @@ function checkPressedButton(e){
 
 function getColorValue(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function switchBulbOn(nr){
+    switch (true){
+        case nr == 16:
+            bulbs[0].classList.add('on');
+            bulbs[1].classList.remove('on');
+            bulbs[2].classList.remove('on');
+            break;
+        case nr == 32:
+            bulbs[0].classList.remove('on');
+            bulbs[1].classList.add('on');
+            bulbs[2].classList.remove('on');
+            break;
+        case nr == 64:
+            bulbs[0].classList.remove('on');
+            bulbs[1].classList.remove('on');
+            bulbs[2].classList.add('on');
+            break;
+    }
 }

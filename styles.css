@@ -28,9 +28,13 @@ body {
     align-items: center;
 }
 
+p,
+button{
+    font-family: VT323, monospace;
+}
+
 button{
     cursor: pointer;
-    font-family: VT323, monospace;
     font-size: 2.2rem;
     background-color: grey;
     padding: 0.2rem 0.6rem 0.2rem 0.6rem;
@@ -105,6 +109,8 @@ button:active{
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: auto;
+    position: relative;
+    top: 1rem;
 }
 
 input[type='color']{
@@ -144,4 +150,37 @@ input[type='color']{
 
 .hover>*{
     cursor: inherit;
+}
+
+.bulb-cntr{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+    position: absolute;
+    top: -3.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.bulbs{
+    cursor: pointer;
+    width: 24px;
+    line-height: 1.3rem;
+}
+
+.bulbs>img{
+    width: 60%;
+    border-radius: 50%;
+    box-shadow: inset 0 0 6px 0px;
+}
+
+.bulbs>.on{
+    box-shadow:
+    inset 0 0 14px 6px rgba(255, 255, 0, 0.9),
+    0 0 4px 0px rgba(255, 255, 0, 0.9),
+    0 0 8px 0px rgba(255, 255, 0, 0.9),
+    0 0 12px 0px rgba(255, 255, 0, 0.9),
+    0 0 16px 0px rgba(255, 255, 0, 0.9); 
 }
