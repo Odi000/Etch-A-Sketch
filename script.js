@@ -1,9 +1,12 @@
+//Maing Global Variables
 const etchDaSketch = document.getElementById('etch-da-sketch');
 const screen = document.getElementById('screen');
 const buttons = document.querySelectorAll('button');
 const bulbDivs = document.querySelectorAll('.bulbs');
 const bulbs = [];
 const pickedColor = () => document.getElementById('clr-picker').value;
+
+//Object that contains each button funcionality
 const btnFunctions = {
     color: (e) => {
         e.target.style.backgroundColor = pickedColor();
@@ -27,7 +30,11 @@ const btnFunctions = {
     eraser: (e) => {
         e.target.style.backgroundColor = '';
     },
-    reset: (e) => {createAppendDivs()},
+    reset: (e) => {
+        const turnedOnBulb = bulbs.find(bulb => bulb.classList.contains('on'));
+        const turnedOnBulbNr = Number(turnedOnBulb.id.match(/\d+/)[0]);
+        createAppendDivs(turnedOnBulbNr)
+    },
     warm: (e) => {
         const red = getColorValue(128,255);
         const green = getColorValue(0,255);
@@ -44,17 +51,23 @@ const btnFunctions = {
     }
 }
 
+//Adding onclick events for the buttons and bulbs
 buttons.forEach(button => button.onclick = parseButton);
 bulbDivs.forEach(div => {
     bulbs.push(div.firstElementChild);
     div.onclick = parseBulb;
 });
+
+//Screen default size
 createAppendDivs();
 
-function createAppendDivs(side = 16) {
+//-- --//
+function createAppendDivs(side = 16, onChange) {
     screen.innerHTML = '';
     screen.style.cssText = `grid-template-columns: repeat(${side},1fr)`;
     switchBulbOn(side);
+
+    const newDivsArr = []
 
     for(let i=0; i<side*side; i++){
         const newDiv = document.createElement('div');
@@ -62,7 +75,10 @@ function createAppendDivs(side = 16) {
         newDiv.onmousedown = checkPressedButton;
         newDiv.onmouseover = checkPressedButton;
         screen.appendChild(newDiv);
+        newDivsArr.push(newDiv);
+        
     }
+    setTimeout(addOnChangeClass, 100, newDivsArr, onChange);
 }
 
 function parseButton(){
@@ -80,11 +96,10 @@ function parseButton(){
 
 function parseBulb(){
     const chosenSize = Number(this.attributes.name.value);
-    const turnedOnBulb = bulbs.find(bulb => bulb.classList.contains('on'));
-    const turnedOnBulbNr = turnedOnBulb.id.match(/\d+/)[0];
+    const chosenBulb = this.firstElementChild;
 
-    if(chosenSize == turnedOnBulbNr) return;
-    createAppendDivs(chosenSize);
+    if(chosenBulb.classList.contains('on')) return;
+    createAppendDivs(chosenSize, true);
 }
 
 function checkPressedButton(e){
@@ -119,4 +134,18 @@ function switchBulbOn(nr){
             bulbs[2].classList.add('on');
             break;
     }
+}
+
+function addOnChangeClass(nodes, onChange){
+    if(onChange){
+        nodes.forEach(node =>{
+            node.addEventListener('transitionend', removeGrid);
+            node.classList.add('on-change');
+
+        });
+    }
+}
+
+function removeGrid(e){
+    this.classList.remove('on-change');
 }
