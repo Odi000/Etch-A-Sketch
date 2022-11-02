@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kolker+Brush&display=swap');
 @font-face {
     font-family: 'Adine Kirnberg';
     src: url(./Fonts/adine-kirnberg.alternate.ttf);
@@ -54,6 +55,9 @@ h1{
     0 0 10px black;
 }
 
+u{display: inline-block; transition: 1s;}
+u:hover{transform: scale(1.1); background-color: rgba(246, 214, 146, 0.7);}
+
 p,
 button{
     font-family: VT323, monospace;
@@ -86,7 +90,7 @@ button:active{
 #etch-da-sketch{
     width: 54rem;
     /* height: 62.5rem; */
-    margin: 0 auto;
+    margin: 0 auto 7.5rem;
     background-color: var(--primary-clr);
     /* padding-top: 0.01rem; Uncomment in case you don't want the body Display to be flex*/
     border-radius: 0.1rem;
@@ -95,7 +99,6 @@ button:active{
     0 0 0 0.6rem var(--primary-clr2),
     0 0 6px 6px rgba(0, 0, 0, 0.6),
     0 0 12px 6px rgba(0, 0, 0, 0.6);
-    /*Dont forget to add shadow*/
 }
 
 #screen{
@@ -219,6 +222,37 @@ input[type='color']{
     0 0 1.6rem 0 rgba(255, 255, 0, 0.9); 
 }
 
-.footer{
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-family: K2D, sans-serif, 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    width: 100%;
+}
+
+footer>:nth-child(3){
     background-color: var(--primary-clr2);
+    padding: 14px 0;
+    box-shadow: 0 -2px 4px 0;
+}
+
+footer>:nth-child(2){
+    width: 99%;
+    height: 10px;
+    margin: 0 auto;
+    background-color: var(--secondary-clr);
+    box-shadow: 0 -1px 4px 0;
+    border-radius: 2px;
+}
+
+footer>:nth-child(1){
+    width: 98%;
+    height: 8px;
+    margin: 0 auto;
+    background-color: var(--primary-clr2);
+    box-shadow: 0 -1px 4px 0;
+    border-radius: 2px;
 }
