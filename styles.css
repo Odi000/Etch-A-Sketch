@@ -46,17 +46,32 @@ h1{
     font-weight: normal;
     color: var(--secondary-clr);
     text-shadow: 
-    1px 0 0 black,
-    -1px 0 0 black,
-    0 1px 0 black,
-    0 -1px 0 black,
-    0 0 2px black,
-    0 0 6px black,
-    0 0 10px black;
+    0.1rem 0 0 black,
+    -0.1rem 0 0 black,
+    0 0.1rem 0 black,
+    0 -0.1rem 0 black,
+    0 0 0.2rem black,
+    0 0 0.6rem black,
+    0 0 1rem black;
 }
 
-u{display: inline-block; transition: 1s;}
-u:hover{transform: scale(1.1); background-color: rgba(246, 214, 146, 0.7);}
+a{
+    text-decoration: underline #630000;
+    display: inline-block;
+    color: inherit;
+    border-radius: 0.2rem;
+    transition: 
+    transform 1s, 
+    background 1s,
+    box-shadow 1s;
+}
+
+a:hover{
+    transform: scale(1.15) translateY(-20%);
+    background-color: rgba(246, 214, 146, 0.7);
+    box-shadow: 0 0.8rem 0.6rem -0.6rem black;
+    outline: none;
+}
 
 p,
 button{
@@ -88,17 +103,18 @@ button:active{
 }
 
 #etch-da-sketch{
+    z-index: 1;
     width: 54rem;
     /* height: 62.5rem; */
-    margin: 0 auto 7.5rem;
+    margin: 0 auto 8rem;
     background-color: var(--primary-clr);
     /* padding-top: 0.01rem; Uncomment in case you don't want the body Display to be flex*/
     border-radius: 0.1rem;
     box-shadow:
     0 0 0 0.2rem var(--secondary-clr),
     0 0 0 0.6rem var(--primary-clr2),
-    0 0 6px 6px rgba(0, 0, 0, 0.6),
-    0 0 12px 6px rgba(0, 0, 0, 0.6);
+    0 0 0.6rem 0.6rem rgba(0, 0, 0, 0.6),
+    0 0 1.2rem 0.6rem rgba(0, 0, 0, 0.6);
 }
 
 #screen{
@@ -117,7 +133,7 @@ button:active{
 #screen>div{
     user-select: none;
     transition: background-color 120ms, outline-color 0.5s;
-    outline: 1px solid transparent;
+    outline: 0.1rem solid transparent;
 }
 
 #screen .on-change{
@@ -182,7 +198,7 @@ input[type='color']{
 }
 
 .hover{
-    cursor: url(./Cursors/SquareNormal.cur), crosshair;
+    cursor: url(./Files/SquareNormal.cur), crosshair;
 }
 
 .hover>*{
@@ -228,31 +244,65 @@ footer{
     left: 0;
     text-align: center;
     font-family: K2D, sans-serif, 'JetBrains Mono', monospace;
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: 500;
     width: 100%;
 }
 
 footer>:nth-child(3){
     background-color: var(--primary-clr2);
-    padding: 14px 0;
-    box-shadow: 0 -2px 4px 0;
+    padding: 1.4rem 0;
+    box-shadow: 0 -0.2rem 0.4rem 0;
 }
 
 footer>:nth-child(2){
     width: 99%;
-    height: 10px;
+    height: 1rem;
     margin: 0 auto;
     background-color: var(--secondary-clr);
-    box-shadow: 0 -1px 4px 0;
-    border-radius: 2px;
+    box-shadow: 0 -0.1rem 0.4rem 0;
+    border-radius: 0.2rem;
 }
 
 footer>:nth-child(1){
-    width: 98%;
-    height: 8px;
+    width: 97%;
+    height: 0.8rem;
     margin: 0 auto;
     background-color: var(--primary-clr2);
-    box-shadow: 0 -1px 4px 0;
-    border-radius: 2px;
+    box-shadow: 0 -0.1rem 0.4rem 0 rgba(0, 0, 0, 0.4);
+    border-radius: 0.2rem;
+}
+
+.instructions{
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    /* z-index: 0; */
+    width: 30.2rem;
+    font-family: K2D, sans-serif;
+    color: rgb(20, 20, 20);
+    font-size: 1.8rem;
+    border-radius: 1.2rem;
+    background-color: rgb(55, 55, 55);
+    padding: 2rem;
+}
+
+ul{
+    padding-left: 2rem;
+}
+
+ul>*{
+    margin-top: 2rem;
+}
+
+ul>:last-child{
+    margin-top: 0;
+    list-style: none;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 1360px){
+    .instructions{
+        display: none;
+    }
 }

@@ -58,8 +58,9 @@ bulbDivs.forEach(div => {
     div.onclick = parseBulb;
 });
 
-//Screen default size
+//Screen default size + Instructions
 createAppendDivs();
+createInstructions();
 
 //-- --//
 function createAppendDivs(side = 16, onChange) {
@@ -78,7 +79,7 @@ function createAppendDivs(side = 16, onChange) {
         newDivsArr.push(newDiv);
         
     }
-    setTimeout(addOnChangeClass, 100, newDivsArr, onChange);
+    setTimeout(addGrid, 100, newDivsArr, onChange);
 }
 
 function parseButton(){
@@ -136,7 +137,7 @@ function switchBulbOn(nr){
     }
 }
 
-function addOnChangeClass(nodes, onChange){
+function addGrid(nodes, onChange){
     if(onChange){
         nodes.forEach(node =>{
             node.addEventListener('transitionend', removeGrid);
@@ -148,4 +149,36 @@ function addOnChangeClass(nodes, onChange){
 
 function removeGrid(e){
     this.classList.remove('on-change');
+}
+
+//This could be eaisily done in HTML but just for extra prcitce
+function createInstructions(){
+    const h1 = document.querySelector('h1');
+    const instructions = document.createElement('div');
+    const h2 = document.createElement('h2');
+    const ul = document.createElement('ul'),
+    li1 = document.createElement('li'),
+    li2 = document.createElement('li'),
+    li3 = document.createElement('li'),
+    li4 = document.createElement('li'),
+    li5 = document.createElement('li');
+
+    instructions.classList.add('instructions');
+    h2.textContent = 'Instructions';
+    li1.textContent = 'Press a button to activate it.';
+    li2.textContent = 'Press it again to deactivate it.';
+    li3.textContent = 'To change the resolution click the'+
+                    ' light bulbs under the Sketch screen.';
+    li4.textContent = 'To pick the color you want, click on'+ 
+                    ' the square to the left of the "color" Button.';
+    li5.textContent = `(To draw on that color the "color"
+                    button has to be activated)`;
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+    ul.appendChild(li3);
+    ul.appendChild(li4);
+    ul.appendChild(li5);
+    instructions.appendChild(h2);
+    instructions.appendChild(ul);
+    document.body.insertBefore(instructions, h1);
 }
