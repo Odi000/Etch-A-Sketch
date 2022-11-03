@@ -60,7 +60,7 @@ a{
     display: inline-block;
     color: inherit;
     border-radius: 0.2rem;
-    transition: 
+    transition: cubic-bezier(0.62, 2.4, 0.71, 0.38)
     transform 1s, 
     background 1s,
     box-shadow 1s;
@@ -70,7 +70,6 @@ a:hover{
     transform: scale(1.15) translateY(-20%);
     background-color: rgba(246, 214, 146, 0.7);
     box-shadow: 0 0.8rem 0.6rem -0.6rem black;
-    outline: none;
 }
 
 p,
@@ -285,6 +284,7 @@ footer>:nth-child(1){
     border-radius: 1.2rem;
     background-color: rgb(55, 55, 55);
     padding: 2rem;
+    transition: 1s;
 }
 
 ul{
@@ -303,6 +303,6 @@ ul>:last-child{
 
 @media (max-width: 1360px){
     .instructions{
-        display: none;
+        opacity: 0;
     }
 }
