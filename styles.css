@@ -22,57 +22,7 @@
     font-size: 10px;
 }
 
-@media (max-height: 820px){
-    :root{
-        font-size: 9px;
-    }
-}
-
-@media (max-height: 750px){
-    :root{
-        font-size: 8px;
-    }
-}
-
-@media (max-height: 750px){
-    :root{
-        font-size: 8px;
-    }
-}
-
-@media (max-height: 650px){
-    :root{
-        font-size: 7px;
-    }
-}
-
-@media (max-height: 650px){
-    :root{
-        font-size: 7px;
-    }
-}
-
-@media (max-width: 600px){
-    :root{
-        font-size: 8px;
-    }
-}
-
-@media (max-width: 450px){
-    :root{
-        font-size: 7px;
-    }
-}
-
-@media (max-width: 395px){
-    :root{
-        font-size: 6px;
-    }
-}
-
-
 body {
-    position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -181,7 +131,7 @@ button:active{
 }
 
 #screen .on-change{
-    outline-color: rgba(192, 0, 0, 0.5);
+    outline-color: rgba(192, 0, 0, 0.25);
 }
 
 .btn-cntr{
@@ -329,11 +279,15 @@ footer>:nth-child(1){
     border-radius: 1.2rem;
     background-color: rgb(55, 55, 55);
     padding: 2rem;
-    transition: 1s;
+    transition: background-color 1s;
 }
 
 .instructions:hover{
     background-color: #5a5a5a;
+}
+
+.instructions *{
+    user-select: none;
 }
 
 ul{
@@ -348,10 +302,4 @@ ul>:last-child{
     margin-top: 0;
     list-style: none;
     font-size: 1.4rem;
-}
-
-@media (max-width: 1360px){
-    .instructions{
-        opacity: 0;
-    }
 }
